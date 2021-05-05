@@ -15,7 +15,8 @@ private = getJSON('./private.json')
 
 BotToken = private.get("token")
 
-MongoDBPass = private.get("MongoDBPpass")
+MongoDBPass = private.get("MongoDBPPass")
+MongoDBPass2 = private.get("MongoDBPPass2")
 
 HypixelAPIKey1 = private.get("HypixelAPIKey1")
 HypixelAPIKey2 = private.get("HypixelAPIKey2")
@@ -24,15 +25,18 @@ TwitchSecret = private.get("TwitchClientSeacret")
 TwitchID = private.get("TwitchClientID")
 
 cluster = MongoClient(MongoDBPass)
+db2 = cluster["HightLimitMod"]
 db = cluster["PinkPixel"]
+
+DHT = MongoClient(MongoDBPass2)
+DHTDB = DHT['DHTMOD']
 
 initial_extensions = [
     'cogs.helpCommand',
     'cogs.comparing',
-    'cogs.liveAlert',
-    'cogs.hypixelOnlinePing',
     'cogs.admin',
-    'cogs.errorHandler'
+    'cogs.errorHandler',
+    'cogs.heightLimitMod'
 ]
 
 
@@ -63,6 +67,5 @@ async def on_ready():
     #channel = bot.get_channel(806995896298110977)
     #await channel.send(f"bot is back online")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game('pp>help to get started'))
-
 
 bot.run(BotToken, bot=True, reconnect=True)

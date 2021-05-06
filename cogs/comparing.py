@@ -1542,6 +1542,178 @@ class Compare(commands.Cog):
                     image_binary.seek(0)
                     await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
 
+            elif mode in ("pit"):
+                img = Image.open("infoimgimg.png")
+                draw = ImageDraw.Draw(img)
+                font = ImageFont.truetype("Minecraftia.ttf",
+                                          65)
+                fontbig = ImageFont.truetype("Minecraftia.ttf",
+                                             250)
+                draw.text((0, -100), "PIT:", (255, 255, 255), font=fontbig)
+
+                draw.text((50, 500), f"Username: {player1}", (255, 255, 255),
+                          font=font)
+                draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
+                          font=font)
+
+                if player1API['stats']['Pit']['prestige'] > player2API['stats']['Pit']['prestige']:
+                    draw.text((50, 700), f"Prestige: {player1API['stats']['Pit']['prestige']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 700), f"Prestige: {player2API['stats']['Pit']['prestige']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Pit']['prestige'] == player2API['stats']['Pit']['prestige']:
+                    draw.text((50, 700), f"Prestige: {player1API['stats']['Pit']['prestige']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 700), f"Prestige: {player2API['stats']['Pit']['prestige']}" ,
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 700), f"Prestige: {player1API['stats']['Pit']['prestige']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 700), f"Prestige: {player2API['stats']['Pit']['prestige']}",
+                              self.better,
+                              font=font)
+
+                if player1API['stats']['Pit']['kills'] > player2API['stats']['Pit']['kills']:
+                    draw.text((50, 900), f"Kills: {player1API['stats']['Pit']['kills']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 900), f"Kills: {player2API['stats']['Pit']['kills']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Pit']['kills'] == player2API['stats']['Pit']['kills']:
+                    draw.text((50, 900), f"Kills: {player1API['stats']['Pit']['kills']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 900), f"Kills: {player2API['stats']['Pit']['kills']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 900), f"Kills: {player1API['stats']['Pit']['kills']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 900), f"Kills: {player2API['stats']['Pit']['kills']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['Pit']['deaths'] > player2API['stats']['Pit']['deaths']:
+                    draw.text((50, 1100), f"Deaths: {player1API['stats']['Pit']['deaths']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1100), f"Deaths: {player2API['stats']['Pit']['deaths']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Pit']['deaths'] == player2API['stats']['Pit']['deaths']:
+                    draw.text((50, 1100), f"Deaths: {player1API['stats']['Pit']['deaths']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1100), f"Deaths: {player2API['stats']['Pit']['deaths']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1100), f"Deaths: {player1API['stats']['Pit']['deaths']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1100), f"Deaths: {player2API['stats']['Pit']['deaths']}",
+                              self.better,
+                              font=font)
+
+                if player1API['stats']['Pit']['kd_ratio'] > player2API['stats']['Pit']['kd_ratio']:
+                    draw.text((50, 1300), f"KDR: {player1API['stats']['Pit']['kd_ratio']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1300), f"KDR: {player2API['stats']['Pit']['kd_ratio']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Pit']['kd_ratio'] == player2API['stats']['Pit']['kd_ratio']:
+                    draw.text((50, 1300), f"KDR: {player1API['stats']['Pit']['kd_ratio']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1300), f"KDR: {player2API['stats']['Pit']['kd_ratio']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1300), f"KDR: {player1API['stats']['Pit']['kd_ratio']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1300), f"KDR: {player2API['stats']['Pit']['kd_ratio']}",
+                              self.better,
+                              font=font)
+
+                if player1API['stats']['Pit']['assists'] > player2API['stats']['Pit']['assists']:
+                    draw.text((50, 1500), f"Assists: {player1API['stats']['Pit']['assists']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1500), f"Assists: {player2API['stats']['Pit']['assists']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Pit']['assists'] == player2API['stats']['Pit']['assists']:
+                    draw.text((50, 1500), f"Assists: {player1API['stats']['Pit']['assists']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1500), f"Assists: {player2API['stats']['Pit']['assists']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1500), f"Assists: {player1API['stats']['Pit']['assists']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1500), f"Assists: {player2API['stats']['Pit']['assists']}",
+                              self.better,
+                              font=font)
+
+                if player1API['stats']['Pit']['max_streak'] > player2API['stats']['Pit']['max_streak']:
+                    draw.text((50, 1700), f"Max streak: {player1API['stats']['Pit']['max_streak']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1700), f"Max streak: {player2API['stats']['Pit']['max_streak']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Pit']['max_streak'] == player2API['stats']['Pit']['max_streak']:
+                    draw.text((50, 1700), f"Max streak: {player1API['stats']['Pit']['max_streak']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1700), f"Max streak: {player2API['stats']['Pit']['max_streak']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1700), f"Max streak: {player1API['stats']['Pit']['max_streak']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1700), f"Max streak: {player2API['stats']['Pit']['max_streak']}",
+                              self.better,
+                              font=font)
+
+                if player1API['stats']['Pit']['gold'] > player2API['stats']['Pit']['gold']:
+                    draw.text((50, 1900), f"Gold: {player1API['stats']['Pit']['gold']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1900), f"Gold: {player2API['stats']['Pit']['gold']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Pit']['gold'] == player2API['stats']['Pit']['gold']:
+                    draw.text((50, 1900), f"Gold: {player1API['stats']['Pit']['gold']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1900), f"Gold: {player2API['stats']['Pit']['gold']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1900), f"Gold: {player1API['stats']['Pit']['gold']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1900), f"Gold: {player2API['stats']['Pit']['gold']}",
+                              self.better,
+                              font=font)
+
+                with io.BytesIO() as image_binary:
+                    img.save(image_binary, 'PNG')
+                    image_binary.seek(0)
+                    await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
+
             else:
                 img = Image.open("infoimgimg.png")
                 draw = ImageDraw.Draw(img)

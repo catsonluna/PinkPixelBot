@@ -42,7 +42,11 @@ class CommandErrorHandler(commands.Cog):
             return await ctx.send(f'That is not a valid command.', delete_after=8)
         elif isinstance(error, commands.errors.NotOwner):
             return await ctx.send(f'Only Pinkulu can use that', delete_after=8)
-
+        elif isinstance(error, commands.MissingPermissions):
+            try:
+                return await ctx.send("I dont have permission to do that", delete_after=8)
+            except:
+                print("I dont have permission to talk")
         print('Ignoring exception in command {}:'.format(ctx.command), file=sys.stderr)
         traceback.print_exception(type(error), error, error.__traceback__, file=sys.stderr)
 

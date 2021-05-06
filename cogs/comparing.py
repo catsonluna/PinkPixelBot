@@ -152,15 +152,20 @@ class Compare(commands.Cog):
 
                 draw.text((50, 1500), f"Final Kills: {player1API['stats']['BedWars']['final_kills']}", (255, 255, 255),
                           font=font)
-                draw.text((1300, 1500), f"Final Kills: {player2API['stats']['BedWars']['final_kills']}", (255, 255, 255),
+                draw.text((1300, 1500), f"Final Kills: {player2API['stats']['BedWars']['final_kills']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((50, 1700), f"Final Deaths: {player1API['stats']['BedWars']['final_deaths']}", (255, 255, 255),
+                draw.text((50, 1700), f"Final Deaths: {player1API['stats']['BedWars']['final_deaths']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1700), f"Final Deaths: {player2API['stats']['BedWars']['final_deaths']}", (255, 255, 255),
+                draw.text((1300, 1700), f"Final Deaths: {player2API['stats']['BedWars']['final_deaths']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((50, 1900), f"Beds Destroyed: {player1API['stats']['BedWars']['beds_broken']}", (255, 255, 255),
+                draw.text((50, 1900), f"Beds Destroyed: {player1API['stats']['BedWars']['beds_broken']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1900), f"Beds Destroyed: {player2API['stats']['BedWars']['beds_broken']}", (255, 255, 255),
+                draw.text((1300, 1900), f"Beds Destroyed: {player2API['stats']['BedWars']['beds_broken']}",
+                          (255, 255, 255),
                           font=font)
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')
@@ -185,19 +190,26 @@ class Compare(commands.Cog):
                 draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
                           font=font)
 
-                draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['solo']['wins']}", (255, 255, 255),
+                draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['solo']['wins']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['solo']['wins']}", (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['solo']['losses']}", (255, 255, 255),
-                          font=font)
-                draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['solo']['losses']}", (255, 255, 255),
+                draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['solo']['wins']}",
+                          (255, 255, 255),
                           font=font)
 
-                draw.text((50, 1100), f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['solo']['winstreak']}", (255, 255, 255),
+                draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['solo']['losses']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1100), f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['solo']['winstreak']}", (255, 255, 255),
+                draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['solo']['losses']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 1100), f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['solo']['winstreak']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 1100),
+                          f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['solo']['winstreak']}",
+                          (255, 255, 255),
                           font=font)
 
                 draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, (255, 255, 255),
@@ -205,17 +217,29 @@ class Compare(commands.Cog):
                 draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, (255, 255, 255),
                           font=font)
 
-                draw.text((50, 1500), f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['solo']['final_kills']}", (255, 255, 255),
+                draw.text((50, 1500),
+                          f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['solo']['final_kills']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1500), f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['solo']['final_kills']}", (255, 255, 255),
+                draw.text((1300, 1500),
+                          f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['solo']['final_kills']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((50, 1700), f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['solo']['final_deaths']}", (255, 255, 255),
+                draw.text((50, 1700),
+                          f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['solo']['final_deaths']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1700), f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['solo']['final_deaths']}", (255, 255, 255),
+                draw.text((1300, 1700),
+                          f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['solo']['final_deaths']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((50, 1900), f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['solo']['beds_broken']}", (255, 255, 255),
+                draw.text((50, 1900),
+                          f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['solo']['beds_broken']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1900), f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['solo']['beds_broken']}", (255, 255, 255),
+                draw.text((1300, 1900),
+                          f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['solo']['beds_broken']}",
+                          (255, 255, 255),
                           font=font)
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')
@@ -240,19 +264,27 @@ class Compare(commands.Cog):
                 draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
                           font=font)
 
-                draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['doubles']['wins']}", (255, 255, 255),
+                draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['doubles']['wins']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['doubles']['wins']}", (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['doubles']['losses']}", (255, 255, 255),
-                          font=font)
-                draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['doubles']['losses']}", (255, 255, 255),
+                draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['doubles']['wins']}",
+                          (255, 255, 255),
                           font=font)
 
-                draw.text((50, 1100), f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['doubles']['winstreak']}", (255, 255, 255),
+                draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['doubles']['losses']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1100), f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['doubles']['winstreak']}", (255, 255, 255),
+                draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['doubles']['losses']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 1100),
+                          f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['doubles']['winstreak']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 1100),
+                          f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['doubles']['winstreak']}",
+                          (255, 255, 255),
                           font=font)
 
                 draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, (255, 255, 255),
@@ -260,17 +292,29 @@ class Compare(commands.Cog):
                 draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, (255, 255, 255),
                           font=font)
 
-                draw.text((50, 1500), f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['doubles']['final_kills']}", (255, 255, 255),
+                draw.text((50, 1500),
+                          f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['doubles']['final_kills']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1500), f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['doubles']['final_kills']}", (255, 255, 255),
+                draw.text((1300, 1500),
+                          f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['doubles']['final_kills']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((50, 1700), f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']}", (255, 255, 255),
+                draw.text((50, 1700),
+                          f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1700), f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']}", (255, 255, 255),
+                draw.text((1300, 1700),
+                          f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((50, 1900), f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']}", (255, 255, 255),
+                draw.text((50, 1900),
+                          f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1900), f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']}", (255, 255, 255),
+                draw.text((1300, 1900),
+                          f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']}",
+                          (255, 255, 255),
                           font=font)
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')
@@ -295,19 +339,27 @@ class Compare(commands.Cog):
                 draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
                           font=font)
 
-                draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']}", (255, 255, 255),
+                draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']}", (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']}", (255, 255, 255),
-                          font=font)
-                draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']}", (255, 255, 255),
+                draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']}",
+                          (255, 255, 255),
                           font=font)
 
-                draw.text((50, 1100), f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']}", (255, 255, 255),
+                draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1100), f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']}", (255, 255, 255),
+                draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 1100),
+                          f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 1100),
+                          f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']}",
+                          (255, 255, 255),
                           font=font)
 
                 draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, (255, 255, 255),
@@ -315,17 +367,29 @@ class Compare(commands.Cog):
                 draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, (255, 255, 255),
                           font=font)
 
-                draw.text((50, 1500), f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']}", (255, 255, 255),
+                draw.text((50, 1500),
+                          f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1500), f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']}", (255, 255, 255),
+                draw.text((1300, 1500),
+                          f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((50, 1700), f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']}", (255, 255, 255),
+                draw.text((50, 1700),
+                          f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1700), f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']}", (255, 255, 255),
+                draw.text((1300, 1700),
+                          f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((50, 1900), f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']}", (255, 255, 255),
+                draw.text((50, 1900),
+                          f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1900), f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']}", (255, 255, 255),
+                draw.text((1300, 1900),
+                          f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']}",
+                          (255, 255, 255),
                           font=font)
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')
@@ -350,19 +414,27 @@ class Compare(commands.Cog):
                 draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
                           font=font)
 
-                draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']}", (255, 255, 255),
+                draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']}", (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']}", (255, 255, 255),
-                          font=font)
-                draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']}", (255, 255, 255),
+                draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']}",
+                          (255, 255, 255),
                           font=font)
 
-                draw.text((50, 1100), f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']}", (255, 255, 255),
+                draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1100), f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']}", (255, 255, 255),
+                draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 1100),
+                          f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 1100),
+                          f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']}",
+                          (255, 255, 255),
                           font=font)
 
                 draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, (255, 255, 255),
@@ -370,17 +442,29 @@ class Compare(commands.Cog):
                 draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, (255, 255, 255),
                           font=font)
 
-                draw.text((50, 1500), f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']}", (255, 255, 255),
+                draw.text((50, 1500),
+                          f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1500), f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']}", (255, 255, 255),
+                draw.text((1300, 1500),
+                          f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((50, 1700), f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']}", (255, 255, 255),
+                draw.text((50, 1700),
+                          f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1700), f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']}", (255, 255, 255),
+                draw.text((1300, 1700),
+                          f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((50, 1900), f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']}", (255, 255, 255),
+                draw.text((50, 1900),
+                          f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']}",
+                          (255, 255, 255),
                           font=font)
-                draw.text((1300, 1900), f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']}", (255, 255, 255),
+                draw.text((1300, 1900),
+                          f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']}",
+                          (255, 255, 255),
                           font=font)
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')
@@ -400,7 +484,8 @@ class Compare(commands.Cog):
                 draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
                           font=font)
                 if 'cosmetictitle' in player1API['stats']['Duels']['settings']['active_cosmetics']:
-                    draw.text((50, 700), f"Title: {player1API['stats']['Duels']['settings']['active_cosmetics']['cosmetictitle']}",
+                    draw.text((50, 700),
+                              f"Title: {player1API['stats']['Duels']['settings']['active_cosmetics']['cosmetictitle']}",
                               (255, 255, 255),
                               font=font)
                 else:
@@ -409,7 +494,8 @@ class Compare(commands.Cog):
                               font=font)
 
                 if 'cosmetictitle' in player2API['stats']['Duels']['settings']['active_cosmetics']:
-                    draw.text((1300, 700), f"Title: {player2API['stats']['Duels']['settings']['active_cosmetics']['cosmetictitle']}",
+                    draw.text((1300, 700),
+                              f"Title: {player2API['stats']['Duels']['settings']['active_cosmetics']['cosmetictitle']}",
                               (255, 255, 255),
                               font=font)
                 else:
@@ -456,6 +542,133 @@ class Compare(commands.Cog):
                     img.save(image_binary, 'PNG')
                     image_binary.seek(0)
                     await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
+
+            elif mode in ("blitz"):
+                img = Image.open("infoimgimg.png")
+                draw = ImageDraw.Draw(img)
+                font = ImageFont.truetype("Minecraftia.ttf",
+                                          65)
+                fontbig = ImageFont.truetype("Minecraftia.ttf",
+                                             250)
+                draw.text((0, -100), "Blitz:", (255, 255, 255), font=fontbig)
+
+                draw.text((50, 500), f"Username: {player1}", (255, 255, 255),
+                          font=font)
+                draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 700), f"Wins: {player1API['stats']['Blitz']['wins']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 700), f"Wins: {player2API['stats']['Blitz']['wins']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 900), f"Kills: {player1API['stats']['Blitz']['kills']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 900), f"Kills: {player2API['stats']['Blitz']['kills']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 1100), f"Deaths: {player1API['stats']['Blitz']['deaths']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 1100), f"Deaths: {player2API['stats']['Blitz']['deaths']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 1300), f"KDR: {player1API['stats']['Blitz']['k_d']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 1300), f"KDR: {player2API['stats']['Blitz']['k_d']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 1500), f"WLR: {player1API['stats']['Blitz']['win_loss']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 1500), f"WLR: {player2API['stats']['Blitz']['win_loss']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 1700), f"Blitz Uses: {player1API['stats']['Blitz']['blitz_uses']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 1700), f"Blitz Uses: {player2API['stats']['Blitz']['blitz_uses']}",
+                          (255, 255, 255),
+                          font=font)
+                with io.BytesIO() as image_binary:
+                    img.save(image_binary, 'PNG')
+                    image_binary.seek(0)
+                    await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
+
+            elif mode in ("skywars", 'sw'):
+                img = Image.open("infoimgimg.png")
+                draw = ImageDraw.Draw(img)
+                font = ImageFont.truetype("Minecraftia.ttf",
+                                          65)
+                fontbig = ImageFont.truetype("Minecraftia.ttf",
+                                             250)
+                draw.text((0, -100), "Skywars:", (255, 255, 255), font=fontbig)
+
+                draw.text((50, 500), f"Username: {player1}", (255, 255, 255),
+                          font=font)
+                draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 700), f"Level: %.2f" % player1API['stats']['SkyWars']['level'],
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 700), f"Level: %.2f" % player2API['stats']['SkyWars']['level'],
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 900), f"Wins: {player1API['stats']['SkyWars']['wins']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 900), f"Wins: {player2API['stats']['SkyWars']['wins']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 1100), f"Losses: {player1API['stats']['SkyWars']['losses']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 1100), f"Wins: {player2API['stats']['SkyWars']['losses']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 1300), f"WLR: {player1API['stats']['SkyWars']['win_loss_ratio']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 1300), f"WLR: {player2API['stats']['SkyWars']['win_loss_ratio']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 1500), f"Kills: {player1API['stats']['SkyWars']['kills']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 1500), f"Kills: {player2API['stats']['SkyWars']['kills']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 1700), f"Deaths: {player1API['stats']['SkyWars']['deaths']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 1700), f"Deaths: {player2API['stats']['SkyWars']['deaths']}",
+                          (255, 255, 255),
+                          font=font)
+
+                draw.text((50, 1900), f"KDR: {player1API['stats']['SkyWars']['kill_death_ratio']}",
+                          (255, 255, 255),
+                          font=font)
+                draw.text((1300, 1900), f"KDR: {player2API['stats']['SkyWars']['kill_death_ratio']}",
+                          (255, 255, 255),
+                          font=font)
+                with io.BytesIO() as image_binary:
+                    img.save(image_binary, 'PNG')
+                    image_binary.seek(0)
+                    await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
             else:
                 img = Image.open("infoimgimg.png")
                 draw = ImageDraw.Draw(img)
@@ -468,6 +681,7 @@ class Compare(commands.Cog):
                 draw.text((0, 300), "Valid Mods:", (0, 255, 0), font=font)
 
                 draw.text((0, 500), "Overall", (0, 255, 0), font=font)
+
                 draw.text((0, 700), "Bedwars", (0, 255, 0), font=font)
                 draw.text((0, 850), "Bedwars_solo", (0, 255, 0), font=font)
                 draw.text((0, 1000), "Bedwars_doubles", (0, 255, 0), font=font)
@@ -475,6 +689,10 @@ class Compare(commands.Cog):
                 draw.text((0, 1300), "Bedwars_fours", (0, 255, 0), font=font)
 
                 draw.text((0, 1500), "duels", (0, 255, 0), font=font)
+
+                draw.text((0, 1650), "blitz", (0, 255, 0), font=font)
+
+                draw.text((0, 1800), "skywars", (0, 255, 0), font=font)
 
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')

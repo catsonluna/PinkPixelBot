@@ -28,6 +28,13 @@ class Help(commands.Cog):
         embed.add_field(name="Developer:", value="Pinkulu", inline=False)
         await ctx.send(embed=embed)
 
+    @commands.command(pass_context=True)
+    async def invite(self, ctx):
+        color = ctx.author.color
+        embed = discord.Embed(title='PinkBot invite', colour=color, timestamp=datetime.datetime.utcnow())
+        embed.add_field(name="Link:", value=f"https://discord.com/api/oauth2/authorize?client_id=756153198456340511&permissions=8&scope=bot", inline=False)
+        embed.add_field(name="Developer:", value="Pinkulu", inline=False)
+        await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Help(bot))

@@ -376,7 +376,7 @@ class Compare(commands.Cog):
                               f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['solo']['winstreak']}",
                               self.better,
                               font=font)
-                if fkdr1 > fkdr1:
+                if fkdr1 > fkdr2:
                     draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.better,
                               font=font)
                     draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
@@ -389,7 +389,7 @@ class Compare(commands.Cog):
                 else:
                     draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.worse,
                               font=font)
-                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.better,
                               font=font)
 
                 if player1API['stats']['BedWars']['gamemodes']['solo']['final_kills'] > player2API['stats']['BedWars']['gamemodes']['solo']['final_kills']:
@@ -570,7 +570,7 @@ class Compare(commands.Cog):
                               f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['doubles']['winstreak']}",
                               self.better,
                               font=font)
-                if fkdr1 > fkdr1:
+                if fkdr1 > fkdr2:
                     draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.better,
                               font=font)
                     draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
@@ -583,7 +583,7 @@ class Compare(commands.Cog):
                 else:
                     draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.worse,
                               font=font)
-                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.better,
                               font=font)
 
                 if player1API['stats']['BedWars']['gamemodes']['doubles']['final_kills'] > \
@@ -770,7 +770,7 @@ class Compare(commands.Cog):
                               f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']}",
                               self.better,
                               font=font)
-                if fkdr1 > fkdr1:
+                if fkdr1 > fkdr2:
                     draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.better,
                               font=font)
                     draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
@@ -783,7 +783,7 @@ class Compare(commands.Cog):
                 else:
                     draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.worse,
                               font=font)
-                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.better,
                               font=font)
 
                 if player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills'] > \
@@ -970,7 +970,7 @@ class Compare(commands.Cog):
                               f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']}",
                               self.better,
                               font=font)
-                if fkdr1 > fkdr1:
+                if fkdr1 > fkdr2:
                     draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.better,
                               font=font)
                     draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
@@ -983,7 +983,7 @@ class Compare(commands.Cog):
                 else:
                     draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.worse,
                               font=font)
-                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.better,
                               font=font)
 
                 if player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills'] > \

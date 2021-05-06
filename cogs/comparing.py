@@ -14,6 +14,9 @@ class Compare(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.same = 128, 128, 128
+        self.better = 0, 255, 0
+        self.worse = 255, 0, 0
 
     # change to hypixel API when i get my 3rd api key
     @commands.command(name="compare", description="Get hypixel stats")
@@ -86,22 +89,52 @@ class Compare(commands.Cog):
                           font=font)
                 draw.text((1300, 700), f"Rank: {player2Rank}", (255, 255, 255),
                           font=font)
+                if player1API['level'] > player2API['level']:
+                    draw.text((50, 900), f"Level: {player1API['level']}", self.better,
+                              font=font)
+                    draw.text((1300, 900), f"Level: {player2API['level']}", self.worse,
+                              font=font)
+                elif player1API['level'] == player2API['level']:
+                    draw.text((50, 900), f"Level: {player1API['level']}", self.same,
+                              font=font)
+                    draw.text((1300, 900), f"Level: {player2API['level']}", self.same,
+                              font=font)
+                else:
+                    draw.text((50, 900), f"Level: {player1API['level']}", self.worse,
+                              font=font)
+                    draw.text((1300, 900), f"Level: {player2API['level']}", self.better,
+                              font=font)
 
-                draw.text((50, 900), f"Level: {player1API['level']}", (255, 255, 255),
-                          font=font)
-                draw.text((1300, 900), f"Level: {player2API['level']}", (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1100), f"Karma: {player1API['karma']}", (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1100), f"Karma: {player2API['karma']}", (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1300), f"Achievement Points: {player1API['achievement_points']}", (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1300), f"Achievement Points: {player2API['achievement_points']}", (255, 255, 255),
-                          font=font)
-
+                if player1API['karma'] > player2API['karma']:
+                    draw.text((50, 1100), f"Karma: {player1API['karma']}", self.better,
+                              font=font)
+                    draw.text((1300, 1100), f"Karma: {player2API['karma']}", self.worse,
+                              font=font)
+                elif player1API['karma'] == player2API['karma']:
+                    draw.text((50, 1100), f"Karma: {player1API['karma']}", self.same,
+                              font=font)
+                    draw.text((1300, 1100), f"Karma: {player2API['karma']}", self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1100), f"Karma: {player1API['karma']}", self.worse,
+                              font=font)
+                    draw.text((1300, 1100), f"Karma: {player2API['karma']}", self.better,
+                              font=font)
+                if player1API['achievement_points'] > player2API['achievement_points']:
+                    draw.text((50, 1300), f"Achievement Points: {player1API['achievement_points']}", self.better,
+                              font=font)
+                    draw.text((1300, 1300), f"Achievement Points: {player2API['achievement_points']}", self.worse,
+                              font=font)
+                elif player1API['achievement_points'] == player2API['achievement_points']:
+                    draw.text((50, 1300), f"Achievement Points: {player1API['achievement_points']}", self.same,
+                              font=font)
+                    draw.text((1300, 1300), f"Achievement Points: {player2API['achievement_points']}", self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1300), f"Achievement Points: {player1API['achievement_points']}", self.worse,
+                              font=font)
+                    draw.text((1300, 1300), f"Achievement Points: {player2API['achievement_points']}", self.better,
+                              font=font)
                 draw.text((50, 1500), f"Last Game: {player1API['last_game']}", (255, 255, 255),
                           font=font)
                 draw.text((1300, 1500), f"Last Game: {player2API['last_game']}", (255, 255, 255),
@@ -129,44 +162,130 @@ class Compare(commands.Cog):
                           font=font)
                 draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
                           font=font)
+                if player1API['stats']['BedWars']['level'] > player2API['stats']['BedWars']['level']:
+                    draw.text((50, 700), f"Star: {player1API['stats']['BedWars']['level']}", self.better,
+                              font=font)
+                    draw.text((1300, 700), f"Star: {player2API['stats']['BedWars']['level']}", self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['level'] == player2API['stats']['BedWars']['level']:
+                    draw.text((50, 700), f"Star: {player1API['stats']['BedWars']['level']}", self.same,
+                              font=font)
+                    draw.text((1300, 700), f"Star: {player2API['stats']['BedWars']['level']}", self.same,
+                              font=font)
+                else:
+                    draw.text((50, 700), f"Star: {player1API['stats']['BedWars']['level']}", self.worse,
+                              font=font)
+                    draw.text((1300, 700), f"Star: {player2API['stats']['BedWars']['level']}", self.better,
+                              font=font)
 
-                draw.text((50, 700), f"Star: {player1API['stats']['BedWars']['level']}", (255, 255, 255),
-                          font=font)
-                draw.text((1300, 700), f"Star: {player2API['stats']['BedWars']['level']}", (255, 255, 255),
-                          font=font)
+                if player1API['stats']['BedWars']['wins'] > player2API['stats']['BedWars']['wins']:
+                    draw.text((50, 900), f"Wins: {player1API['stats']['BedWars']['wins']}", self.better,
+                              font=font)
+                    draw.text((1300, 900), f"Wins: {player2API['stats']['BedWars']['wins']}", self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['wins'] == player2API['stats']['BedWars']['wins']:
+                    draw.text((50, 900), f"Wins: {player1API['stats']['BedWars']['wins']}", self.same,
+                              font=font)
+                    draw.text((1300, 900), f"Wins: {player2API['stats']['BedWars']['wins']}", self.same,
+                              font=font)
+                else:
+                    draw.text((50, 900), f"Wins: {player1API['stats']['BedWars']['wins']}", self.worse,
+                              font=font)
+                    draw.text((1300, 900), f"Wins: {player2API['stats']['BedWars']['wins']}", self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['winstreak'] > player2API['stats']['BedWars']['winstreak']:
+                    draw.text((50, 1100), f"Winstreak: {player1API['stats']['BedWars']['winstreak']}", self.better,
+                              font=font)
+                    draw.text((1300, 1100), f"Winstreak: {player2API['stats']['BedWars']['winstreak']}", self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['winstreak'] == player2API['stats']['BedWars']['winstreak']:
+                    draw.text((50, 1100), f"Winstreak: {player1API['stats']['BedWars']['winstreak']}", self.same,
+                              font=font)
+                    draw.text((1300, 1100), f"Winstreak: {player2API['stats']['BedWars']['winstreak']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1100), f"Winstreak: {player1API['stats']['BedWars']['winstreak']}", self.worse,
+                              font=font)
+                    draw.text((1300, 1100), f"Winstreak: {player2API['stats']['BedWars']['winstreak']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['final_k_d'] > player2API['stats']['BedWars']['final_k_d']:
+                    draw.text((50, 1300), f"FKDR: {player1API['stats']['BedWars']['final_k_d']}", self.better,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR: {player2API['stats']['BedWars']['final_k_d']}", self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['final_k_d'] == player2API['stats']['BedWars']['final_k_d']:
+                    draw.text((50, 1300), f"FKDR: {player1API['stats']['BedWars']['final_k_d']}", self.same,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR: {player2API['stats']['BedWars']['final_k_d']}", self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1300), f"FKDR: {player1API['stats']['BedWars']['final_k_d']}", self.worse,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR: {player2API['stats']['BedWars']['final_k_d']}", self.better,
+                              font=font)
 
-                draw.text((50, 900), f"Wins: {player1API['stats']['BedWars']['wins']}", (255, 255, 255),
-                          font=font)
-                draw.text((1300, 900), f"Wins: {player2API['stats']['BedWars']['wins']}", (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1100), f"Winstreak: {player1API['stats']['BedWars']['winstreak']}", (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1100), f"Winstreak: {player2API['stats']['BedWars']['winstreak']}", (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1300), f"FKDR: {player1API['stats']['BedWars']['final_k_d']}", (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1300), f"FKDR: {player2API['stats']['BedWars']['final_k_d']}", (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1500), f"Final Kills: {player1API['stats']['BedWars']['final_kills']}", (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1500), f"Final Kills: {player2API['stats']['BedWars']['final_kills']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((50, 1700), f"Final Deaths: {player1API['stats']['BedWars']['final_deaths']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1700), f"Final Deaths: {player2API['stats']['BedWars']['final_deaths']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((50, 1900), f"Beds Destroyed: {player1API['stats']['BedWars']['beds_broken']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1900), f"Beds Destroyed: {player2API['stats']['BedWars']['beds_broken']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['BedWars']['final_kills'] > player2API['stats']['BedWars']['final_kills']:
+                    draw.text((50, 1500), f"Final Kills: {player1API['stats']['BedWars']['final_kills']}", self.better,
+                              font=font)
+                    draw.text((1300, 1500), f"Final Kills: {player2API['stats']['BedWars']['final_kills']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['final_kills'] > player2API['stats']['BedWars']['final_kills']:
+                    draw.text((50, 1500), f"Final Kills: {player1API['stats']['BedWars']['final_kills']}", self.same,
+                              font=font)
+                    draw.text((1300, 1500), f"Final Kills: {player2API['stats']['BedWars']['final_kills']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1500), f"Final Kills: {player1API['stats']['BedWars']['final_kills']}", self.worse,
+                              font=font)
+                    draw.text((1300, 1500), f"Final Kills: {player2API['stats']['BedWars']['final_kills']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['final_deaths'] > player2API['stats']['BedWars']['final_deaths']:
+                    draw.text((50, 1700), f"Final Deaths: {player1API['stats']['BedWars']['final_deaths']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1700), f"Final Deaths: {player2API['stats']['BedWars']['final_deaths']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['final_deaths'] == player2API['stats']['BedWars']['final_deaths']:
+                    draw.text((50, 1700), f"Final Deaths: {player1API['stats']['BedWars']['final_deaths']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1700), f"Final Deaths: {player2API['stats']['BedWars']['final_deaths']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1700), f"Final Deaths: {player1API['stats']['BedWars']['final_deaths']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1700), f"Final Deaths: {player2API['stats']['BedWars']['final_deaths']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['beds_broken'] > player2API['stats']['BedWars']['beds_broken']:
+                    draw.text((50, 1900), f"Beds Destroyed: {player1API['stats']['BedWars']['beds_broken']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1900), f"Beds Destroyed: {player2API['stats']['BedWars']['beds_broken']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['beds_broken'] == player2API['stats']['BedWars']['beds_broken']:
+                    draw.text((50, 1900), f"Beds Destroyed: {player1API['stats']['BedWars']['beds_broken']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1900), f"Beds Destroyed: {player2API['stats']['BedWars']['beds_broken']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1900), f"Beds Destroyed: {player1API['stats']['BedWars']['beds_broken']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1900), f"Beds Destroyed: {player2API['stats']['BedWars']['beds_broken']}",
+                              self.better,
+                              font=font)
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')
                     image_binary.seek(0)
@@ -189,58 +308,171 @@ class Compare(commands.Cog):
                           font=font)
                 draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
                           font=font)
+                if player1API['stats']['BedWars']['gamemodes']['solo']['wins'] > player2API['stats']['BedWars']['gamemodes']['solo']['wins']:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['solo']['wins']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['solo']['wins']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['solo']['wins'] == player2API['stats']['BedWars']['gamemodes']['solo']['wins']:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['solo']['wins']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['solo']['wins']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['solo']['wins']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['solo']['wins']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['solo']['losses'] > player2API['stats']['BedWars']['gamemodes']['solo']['losses']:
+                    draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['solo']['losses']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['solo']['losses']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['solo']['losses'] == player2API['stats']['BedWars']['gamemodes']['solo']['losses']:
+                    draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['solo']['losses']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['solo']['losses']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['solo']['losses']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['solo']['losses']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['solo']['winstreak'] > player2API['stats']['BedWars']['gamemodes']['solo']['winstreak']:
+                    draw.text((50, 1100), f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['solo']['winstreak']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1100),
+                              f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['solo']['winstreak']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['solo']['winstreak'] == player2API['stats']['BedWars']['gamemodes']['solo']['winstreak']:
+                    draw.text((50, 1100),
+                              f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['solo']['winstreak']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1100),
+                              f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['solo']['winstreak']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1100),
+                              f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['solo']['winstreak']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1100),
+                              f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['solo']['winstreak']}",
+                              self.better,
+                              font=font)
+                if fkdr1 > fkdr1:
+                    draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.better,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
+                              font=font)
+                elif fkdr1 == fkdr2:
+                    draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.same,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.worse,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
+                              font=font)
 
-                draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['solo']['wins']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['solo']['wins']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['solo']['losses']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['solo']['losses']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1100), f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['solo']['winstreak']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1100),
-                          f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['solo']['winstreak']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1500),
-                          f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['solo']['final_kills']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1500),
-                          f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['solo']['final_kills']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((50, 1700),
-                          f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['solo']['final_deaths']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1700),
-                          f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['solo']['final_deaths']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((50, 1900),
-                          f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['solo']['beds_broken']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1900),
-                          f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['solo']['beds_broken']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['BedWars']['gamemodes']['solo']['final_kills'] > player2API['stats']['BedWars']['gamemodes']['solo']['final_kills']:
+                    draw.text((50, 1500),
+                              f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['solo']['final_kills']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1500),
+                              f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['solo']['final_kills']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['solo']['final_kills'] == player2API['stats']['BedWars']['gamemodes']['solo']['final_kills']:
+                    draw.text((50, 1500),
+                              f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['solo']['final_kills']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1500),
+                              f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['solo']['final_kills']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1500),
+                              f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['solo']['final_kills']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1500),
+                              f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['solo']['final_kills']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['solo']['final_deaths'] > player2API['stats']['BedWars']['gamemodes']['solo']['final_deaths']:
+                    draw.text((50, 1700),
+                              f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['solo']['final_deaths']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1700),
+                              f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['solo']['final_deaths']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['solo']['final_deaths'] == player2API['stats']['BedWars']['gamemodes']['solo']['final_deaths']:
+                    draw.text((50, 1700),
+                              f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['solo']['final_deaths']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1700),
+                              f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['solo']['final_deaths']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1700),
+                              f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['solo']['final_deaths']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1700),
+                              f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['solo']['final_deaths']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['solo']['beds_broken'] > player2API['stats']['BedWars']['gamemodes']['solo']['beds_broken']:
+                    draw.text((50, 1900),
+                              f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['solo']['beds_broken']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1900),
+                              f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['solo']['beds_broken']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['solo']['beds_broken'] == player2API['stats']['BedWars']['gamemodes']['solo']['beds_broken']:
+                    draw.text((50, 1900),
+                              f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['solo']['beds_broken']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1900),
+                              f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['solo']['beds_broken']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1900),
+                              f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['solo']['beds_broken']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1900),
+                              f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['solo']['beds_broken']}",
+                              self.better,
+                              font=font)
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')
                     image_binary.seek(0)
@@ -263,59 +495,184 @@ class Compare(commands.Cog):
                           font=font)
                 draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
                           font=font)
+                if player1API['stats']['BedWars']['gamemodes']['doubles']['wins'] > \
+                        player2API['stats']['BedWars']['gamemodes']['doubles']['wins']:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['doubles']['wins']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['doubles']['wins']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['doubles']['wins'] == \
+                        player2API['stats']['BedWars']['gamemodes']['doubles']['wins']:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['doubles']['wins']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['doubles']['wins']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['doubles']['wins']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['doubles']['wins']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['doubles']['losses'] > \
+                        player2API['stats']['BedWars']['gamemodes']['doubles']['losses']:
+                    draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['doubles']['losses']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['doubles']['losses']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['doubles']['losses'] == \
+                        player2API['stats']['BedWars']['gamemodes']['doubles']['losses']:
+                    draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['doubles']['losses']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['doubles']['losses']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['doubles']['losses']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['doubles']['losses']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['doubles']['winstreak'] > \
+                        player2API['stats']['BedWars']['gamemodes']['doubles']['winstreak']:
+                    draw.text((50, 1100),
+                              f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['doubles']['winstreak']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1100),
+                              f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['doubles']['winstreak']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['doubles']['winstreak'] == \
+                        player2API['stats']['BedWars']['gamemodes']['doubles']['winstreak']:
+                    draw.text((50, 1100),
+                              f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['doubles']['winstreak']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1100),
+                              f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['doubles']['winstreak']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1100),
+                              f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['doubles']['winstreak']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1100),
+                              f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['doubles']['winstreak']}",
+                              self.better,
+                              font=font)
+                if fkdr1 > fkdr1:
+                    draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.better,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
+                              font=font)
+                elif fkdr1 == fkdr2:
+                    draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.same,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.worse,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
+                              font=font)
 
-                draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['doubles']['wins']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['doubles']['wins']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['doubles']['losses']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['doubles']['losses']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1100),
-                          f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['doubles']['winstreak']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1100),
-                          f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['doubles']['winstreak']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1500),
-                          f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['doubles']['final_kills']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1500),
-                          f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['doubles']['final_kills']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((50, 1700),
-                          f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1700),
-                          f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((50, 1900),
-                          f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1900),
-                          f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['BedWars']['gamemodes']['doubles']['final_kills'] > \
+                        player2API['stats']['BedWars']['gamemodes']['doubles']['final_kills']:
+                    draw.text((50, 1500),
+                              f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['doubles']['final_kills']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1500),
+                              f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['doubles']['final_kills']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['doubles']['final_kills'] == \
+                        player2API['stats']['BedWars']['gamemodes']['doubles']['final_kills']:
+                    draw.text((50, 1500),
+                              f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['doubles']['final_kills']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1500),
+                              f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['doubles']['final_kills']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1500),
+                              f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['doubles']['final_kills']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1500),
+                              f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['doubles']['final_kills']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['doubles']['final_deaths'] > \
+                        player2API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']:
+                    draw.text((50, 1700),
+                              f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1700),
+                              f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['doubles']['final_deaths'] == \
+                        player2API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']:
+                    draw.text((50, 1700),
+                              f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1700),
+                              f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1700),
+                              f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1700),
+                              f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['doubles']['final_deaths']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['doubles']['beds_broken'] > \
+                        player2API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']:
+                    draw.text((50, 1900),
+                              f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1900),
+                              f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['doubles']['beds_broken'] == \
+                        player2API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']:
+                    draw.text((50, 1900),
+                              f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1900),
+                              f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1900),
+                              f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1900),
+                              f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['doubles']['beds_broken']}",
+                              self.better,
+                              font=font)
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')
                     image_binary.seek(0)
@@ -338,59 +695,184 @@ class Compare(commands.Cog):
                           font=font)
                 draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
                           font=font)
+                if player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins'] > \
+                        player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins'] == \
+                        player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses'] > \
+                        player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']:
+                    draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses'] == \
+                        player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']:
+                    draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak'] > \
+                        player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']:
+                    draw.text((50, 1100),
+                              f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1100),
+                              f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak'] == \
+                        player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']:
+                    draw.text((50, 1100),
+                              f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1100),
+                              f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1100),
+                              f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1100),
+                              f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']}",
+                              self.better,
+                              font=font)
+                if fkdr1 > fkdr1:
+                    draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.better,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
+                              font=font)
+                elif fkdr1 == fkdr2:
+                    draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.same,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.worse,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
+                              font=font)
 
-                draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['wins']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['losses']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1100),
-                          f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1100),
-                          f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['winstreak']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1500),
-                          f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1500),
-                          f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((50, 1700),
-                          f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1700),
-                          f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((50, 1900),
-                          f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1900),
-                          f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills'] > \
+                        player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']:
+                    draw.text((50, 1500),
+                              f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1500),
+                              f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills'] == \
+                        player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']:
+                    draw.text((50, 1500),
+                              f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1500),
+                              f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1500),
+                              f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1500),
+                              f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_kills']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths'] > \
+                        player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']:
+                    draw.text((50, 1700),
+                              f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1700),
+                              f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths'] == \
+                        player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']:
+                    draw.text((50, 1700),
+                              f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1700),
+                              f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1700),
+                              f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1700),
+                              f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['final_deaths']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken'] > \
+                        player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']:
+                    draw.text((50, 1900),
+                              f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1900),
+                              f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken'] == \
+                        player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']:
+                    draw.text((50, 1900),
+                              f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1900),
+                              f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1900),
+                              f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1900),
+                              f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['3v3v3v3']['beds_broken']}",
+                              self.better,
+                              font=font)
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')
                     image_binary.seek(0)
@@ -413,63 +895,189 @@ class Compare(commands.Cog):
                           font=font)
                 draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
                           font=font)
+                if player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins'] > \
+                        player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins'] == \
+                        player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses'] > \
+                        player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']:
+                    draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses'] == \
+                        player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']:
+                    draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak'] > \
+                        player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']:
+                    draw.text((50, 1100),
+                              f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1100),
+                              f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak'] == \
+                        player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']:
+                    draw.text((50, 1100),
+                              f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1100),
+                              f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1100),
+                              f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1100),
+                              f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']}",
+                              self.better,
+                              font=font)
+                if fkdr1 > fkdr1:
+                    draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.better,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
+                              font=font)
+                elif fkdr1 == fkdr2:
+                    draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.same,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, self.worse,
+                              font=font)
+                    draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, self.worse,
+                              font=font)
 
-                draw.text((50, 700), f"Wins: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 700), f"Wins: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['wins']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 900), f"Losses: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 900), f"Losses: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['losses']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1100),
-                          f"Winstreak: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1100),
-                          f"Winstreak: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['winstreak']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1300), f"FKDR: %.2f" % fkdr1, (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1300), f"FKDR %.2f" % fkdr2, (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1500),
-                          f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1500),
-                          f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((50, 1700),
-                          f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1700),
-                          f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((50, 1900),
-                          f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1900),
-                          f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills'] > \
+                        player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']:
+                    draw.text((50, 1500),
+                              f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1500),
+                              f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills'] == \
+                        player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']:
+                    draw.text((50, 1500),
+                              f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1500),
+                              f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1500),
+                              f"Final Kills: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1500),
+                              f"Final Kills: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_kills']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths'] > \
+                        player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']:
+                    draw.text((50, 1700),
+                              f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1700),
+                              f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths'] == \
+                        player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']:
+                    draw.text((50, 1700),
+                              f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1700),
+                              f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1700),
+                              f"Final Deaths: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1700),
+                              f"Final Deaths: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['final_deaths']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken'] > \
+                        player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']:
+                    draw.text((50, 1900),
+                              f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1900),
+                              f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken'] == \
+                        player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']:
+                    draw.text((50, 1900),
+                              f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1900),
+                              f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1900),
+                              f"Beds Destroyed: {player1API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1900),
+                              f"Beds Destroyed: {player2API['stats']['BedWars']['gamemodes']['4v4v4v4']['beds_broken']}",
+                              self.better,
+                              font=font)
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')
                     image_binary.seek(0)
                     await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
+
             elif mode in ("duel", "duels"):
                 img = Image.open("infoimgimg.png")
                 draw = ImageDraw.Draw(img)
@@ -502,41 +1110,113 @@ class Compare(commands.Cog):
                     draw.text((1300, 700), f"Title: None",
                               (255, 255, 255),
                               font=font)
+                if player1API['stats']['Duels']['general']['wins'] > player2API['stats']['Duels']['general']['wins']:
+                    draw.text((50, 900), f"Wins: {player1API['stats']['Duels']['general']['wins']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 900), f"Wins: {player2API['stats']['Duels']['general']['wins']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Duels']['general']['wins'] == player1API['stats']['Duels']['general']['wins']:
+                    draw.text((50, 900), f"Wins: {player1API['stats']['Duels']['general']['wins']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 900), f"Wins: {player2API['stats']['Duels']['general']['wins']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 900), f"Wins: {player1API['stats']['Duels']['general']['wins']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 900), f"Wins: {player2API['stats']['Duels']['general']['wins']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['Duels']['general']['losses'] > player2API['stats']['Duels']['general']['losses']:
+                    draw.text((50, 1100), f"Losses: {player1API['stats']['Duels']['general']['losses']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1100), f"Losses: {player2API['stats']['Duels']['general']['losses']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Duels']['general']['losses'] == player2API['stats']['Duels']['general']['losses']:
+                    draw.text((50, 1100), f"Losses: {player1API['stats']['Duels']['general']['losses']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1100), f"Losses: {player2API['stats']['Duels']['general']['losses']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1100), f"Losses: {player1API['stats']['Duels']['general']['losses']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1100), f"Losses: {player2API['stats']['Duels']['general']['losses']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['Duels']['general']['kills'] > player2API['stats']['Duels']['general']['kills']:
+                    draw.text((50, 1300), f"Kills: {player1API['stats']['Duels']['general']['kills']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1300), f"Kills: {player2API['stats']['Duels']['general']['kills']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Duels']['general']['kills'] == player2API['stats']['Duels']['general']['kills']:
+                    draw.text((50, 1300), f"Kills: {player1API['stats']['Duels']['general']['kills']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1300), f"Kills: {player2API['stats']['Duels']['general']['kills']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1300), f"Kills: {player1API['stats']['Duels']['general']['kills']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1300), f"Kills: {player2API['stats']['Duels']['general']['kills']}",
+                              self.better,
+                              font=font)
 
-                draw.text((50, 900), f"Wins: {player1API['stats']['Duels']['general']['wins']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 900), f"Wins: {player2API['stats']['Duels']['general']['wins']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['Duels']['general']['deaths'] > player2API['stats']['Duels']['general']['deaths']:
+                    draw.text((50, 1500), f"Deaths: {player1API['stats']['Duels']['general']['deaths']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1500), f"Deaths: {player2API['stats']['Duels']['general']['deaths']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Duels']['general']['deaths'] == player2API['stats']['Duels']['general']['deaths']:
+                    draw.text((50, 1500), f"Deaths: {player1API['stats']['Duels']['general']['deaths']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1500), f"Deaths: {player2API['stats']['Duels']['general']['deaths']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1500), f"Deaths: {player1API['stats']['Duels']['general']['deaths']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1500), f"Deaths: {player2API['stats']['Duels']['general']['deaths']}",
+                              self.better,
+                              font=font)
 
-                draw.text((50, 1100), f"Losses: {player1API['stats']['Duels']['general']['losses']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1100), f"Losses: {player2API['stats']['Duels']['general']['losses']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1300), f"Kills: {player1API['stats']['Duels']['general']['kills']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1300), f"Kills: {player2API['stats']['Duels']['general']['kills']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1500), f"Deaths: {player1API['stats']['Duels']['general']['deaths']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1500), f"Deaths: {player2API['stats']['Duels']['general']['deaths']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1700), f"KDR: %.2f" % player1API['stats']['Duels']['general']['kd_ratio'],
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1700), f"KDR: %.2f" % player2API['stats']['Duels']['general']['kd_ratio'],
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['Duels']['general']['kd_ratio'] > player2API['stats']['Duels']['general']['kd_ratio']:
+                    draw.text((50, 1700), f"KDR: %.2f" % player1API['stats']['Duels']['general']['kd_ratio'],
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1700), f"KDR: %.2f" % player2API['stats']['Duels']['general']['kd_ratio'],
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Duels']['general']['kd_ratio'] == player2API['stats']['Duels']['general']['kd_ratio']:
+                    draw.text((50, 1700), f"KDR: %.2f" % player1API['stats']['Duels']['general']['kd_ratio'],
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1700), f"KDR: %.2f" % player2API['stats']['Duels']['general']['kd_ratio'],
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1700), f"KDR: %.2f" % player1API['stats']['Duels']['general']['kd_ratio'],
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1700), f"KDR: %.2f" % player2API['stats']['Duels']['general']['kd_ratio'],
+                              self.better,
+                              font=font)
 
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')
@@ -557,47 +1237,136 @@ class Compare(commands.Cog):
                 draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
                           font=font)
 
-                draw.text((50, 700), f"Wins: {player1API['stats']['Blitz']['wins']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 700), f"Wins: {player2API['stats']['Blitz']['wins']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['Blitz']['wins'] > player2API['stats']['Blitz']['wins']:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['Blitz']['wins']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['Blitz']['wins']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Blitz']['wins'] == player2API['stats']['Blitz']['wins']:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['Blitz']['wins']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['Blitz']['wins']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 700), f"Wins: {player1API['stats']['Blitz']['wins']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 700), f"Wins: {player2API['stats']['Blitz']['wins']}",
+                              self.better,
+                              font=font)
 
-                draw.text((50, 900), f"Kills: {player1API['stats']['Blitz']['kills']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 900), f"Kills: {player2API['stats']['Blitz']['kills']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['Blitz']['kills'] > player2API['stats']['Blitz']['kills']:
+                    draw.text((50, 900), f"Kills: {player1API['stats']['Blitz']['kills']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 900), f"Kills: {player2API['stats']['Blitz']['kills']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Blitz']['kills'] == player2API['stats']['Blitz']['kills']:
+                    draw.text((50, 900), f"Kills: {player1API['stats']['Blitz']['kills']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 900), f"Kills: {player2API['stats']['Blitz']['kills']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 900), f"Kills: {player1API['stats']['Blitz']['kills']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 900), f"Kills: {player2API['stats']['Blitz']['kills']}",
+                              self.better,
+                              font=font)
 
-                draw.text((50, 1100), f"Deaths: {player1API['stats']['Blitz']['deaths']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1100), f"Deaths: {player2API['stats']['Blitz']['deaths']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['Blitz']['deaths'] > player2API['stats']['Blitz']['deaths']:
+                    draw.text((50, 1100), f"Deaths: {player1API['stats']['Blitz']['deaths']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1100), f"Deaths: {player2API['stats']['Blitz']['deaths']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Blitz']['deaths'] == player2API['stats']['Blitz']['deaths']:
+                    draw.text((50, 1100), f"Deaths: {player1API['stats']['Blitz']['deaths']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1100), f"Deaths: {player2API['stats']['Blitz']['deaths']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1100), f"Deaths: {player1API['stats']['Blitz']['deaths']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1100), f"Deaths: {player2API['stats']['Blitz']['deaths']}",
+                              self.better,
+                              font=font)
 
-                draw.text((50, 1300), f"KDR: {player1API['stats']['Blitz']['k_d']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1300), f"KDR: {player2API['stats']['Blitz']['k_d']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['Blitz']['k_d'] > player1API['stats']['Blitz']['k_d']:
+                    draw.text((50, 1300), f"KDR: {player1API['stats']['Blitz']['k_d']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1300), f"KDR: {player2API['stats']['Blitz']['k_d']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Blitz']['k_d'] == player1API['stats']['Blitz']['k_d']:
+                    draw.text((50, 1300), f"KDR: {player1API['stats']['Blitz']['k_d']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1300), f"KDR: {player2API['stats']['Blitz']['k_d']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1300), f"KDR: {player1API['stats']['Blitz']['k_d']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1300), f"KDR: {player2API['stats']['Blitz']['k_d']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['Blitz']['win_loss'] > player2API['stats']['Blitz']['win_loss']:
+                    draw.text((50, 1500), f"WLR: {player1API['stats']['Blitz']['win_loss']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1500), f"WLR: {player2API['stats']['Blitz']['win_loss']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Blitz']['win_loss'] == player2API['stats']['Blitz']['win_loss']:
+                    draw.text((50, 1500), f"WLR: {player1API['stats']['Blitz']['win_loss']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1500), f"WLR: {player2API['stats']['Blitz']['win_loss']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1500), f"WLR: {player1API['stats']['Blitz']['win_loss']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1500), f"WLR: {player2API['stats']['Blitz']['win_loss']}",
+                              self.better,
+                              font=font)
 
-                draw.text((50, 1500), f"WLR: {player1API['stats']['Blitz']['win_loss']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1500), f"WLR: {player2API['stats']['Blitz']['win_loss']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1700), f"Blitz Uses: {player1API['stats']['Blitz']['blitz_uses']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1700), f"Blitz Uses: {player2API['stats']['Blitz']['blitz_uses']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['Blitz']['blitz_uses'] > player2API['stats']['Blitz']['blitz_uses']:
+                    draw.text((50, 1700), f"Blitz Uses: {player1API['stats']['Blitz']['blitz_uses']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1700), f"Blitz Uses: {player2API['stats']['Blitz']['blitz_uses']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['Blitz']['blitz_uses'] == player2API['stats']['Blitz']['blitz_uses']:
+                    draw.text((50, 1700), f"Blitz Uses: {player1API['stats']['Blitz']['blitz_uses']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1700), f"Blitz Uses: {player2API['stats']['Blitz']['blitz_uses']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1700), f"Blitz Uses: {player1API['stats']['Blitz']['blitz_uses']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1700), f"Blitz Uses: {player2API['stats']['Blitz']['blitz_uses']}",
+                              self.better,
+                              font=font)
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')
                     image_binary.seek(0)
@@ -617,58 +1386,162 @@ class Compare(commands.Cog):
                 draw.text((1300, 500), f"Username: {player2}", (255, 255, 255),
                           font=font)
 
-                draw.text((50, 700), f"Level: %.2f" % player1API['stats']['SkyWars']['level'],
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 700), f"Level: %.2f" % player2API['stats']['SkyWars']['level'],
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['SkyWars']['level'] > player2API['stats']['SkyWars']['level']:
+                    draw.text((50, 700), f"Level: %.2f" % player1API['stats']['SkyWars']['level'],
+                              self.better,
+                              font=font)
+                    draw.text((1300, 700), f"Level: %.2f" % player2API['stats']['SkyWars']['level'],
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['SkyWars']['level'] == player2API['stats']['SkyWars']['level']:
+                    draw.text((50, 700), f"Level: %.2f" % player1API['stats']['SkyWars']['level'],
+                              self.same,
+                              font=font)
+                    draw.text((1300, 700), f"Level: %.2f" % player2API['stats']['SkyWars']['level'],
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 700), f"Level: %.2f" % player1API['stats']['SkyWars']['level'],
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 700), f"Level: %.2f" % player2API['stats']['SkyWars']['level'],
+                              self.better,
+                              font=font)
+                if player1API['stats']['SkyWars']['wins'] > player2API['stats']['SkyWars']['wins']:
+                    draw.text((50, 900), f"Wins: {player1API['stats']['SkyWars']['wins']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 900), f"Wins: {player2API['stats']['SkyWars']['wins']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['SkyWars']['wins'] == player2API['stats']['SkyWars']['wins']:
+                    draw.text((50, 900), f"Wins: {player1API['stats']['SkyWars']['wins']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 900), f"Wins: {player2API['stats']['SkyWars']['wins']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 900), f"Wins: {player1API['stats']['SkyWars']['wins']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 900), f"Wins: {player2API['stats']['SkyWars']['wins']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['SkyWars']['losses'] > player2API['stats']['SkyWars']['losses']:
+                    draw.text((50, 1100), f"Losses: {player1API['stats']['SkyWars']['losses']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1100), f"Losses: {player2API['stats']['SkyWars']['losses']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['SkyWars']['losses'] == player2API['stats']['SkyWars']['losses']:
+                    draw.text((50, 1100), f"Losses: {player1API['stats']['SkyWars']['losses']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1100), f"Losses: {player2API['stats']['SkyWars']['losses']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1100), f"Losses: {player1API['stats']['SkyWars']['losses']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1100), f"Losses: {player2API['stats']['SkyWars']['losses']}",
+                              self.better,
+                              font=font)
 
-                draw.text((50, 900), f"Wins: {player1API['stats']['SkyWars']['wins']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 900), f"Wins: {player2API['stats']['SkyWars']['wins']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['SkyWars']['win_loss_ratio'] > player2API['stats']['SkyWars']['win_loss_ratio']:
+                    draw.text((50, 1300), f"WLR: {player1API['stats']['SkyWars']['win_loss_ratio']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1300), f"WLR: {player2API['stats']['SkyWars']['win_loss_ratio']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['SkyWars']['win_loss_ratio'] == player2API['stats']['SkyWars']['win_loss_ratio']:
+                    draw.text((50, 1300), f"WLR: {player1API['stats']['SkyWars']['win_loss_ratio']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1300), f"WLR: {player2API['stats']['SkyWars']['win_loss_ratio']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1300), f"WLR: {player1API['stats']['SkyWars']['win_loss_ratio']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1300), f"WLR: {player2API['stats']['SkyWars']['win_loss_ratio']}",
+                              self.better,
+                              font=font)
+                if player1API['stats']['SkyWars']['kills'] > player2API['stats']['SkyWars']['kills']:
+                    draw.text((50, 1500), f"Kills: {player1API['stats']['SkyWars']['kills']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1500), f"Kills: {player2API['stats']['SkyWars']['kills']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['SkyWars']['kills'] == player2API['stats']['SkyWars']['kills']:
+                    draw.text((50, 1500), f"Kills: {player1API['stats']['SkyWars']['kills']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1500), f"Kills: {player2API['stats']['SkyWars']['kills']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1500), f"Kills: {player1API['stats']['SkyWars']['kills']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1500), f"Kills: {player2API['stats']['SkyWars']['kills']}",
+                              self.better,
+                              font=font)
 
-                draw.text((50, 1100), f"Losses: {player1API['stats']['SkyWars']['losses']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1100), f"Wins: {player2API['stats']['SkyWars']['losses']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['SkyWars']['deaths'] > player2API['stats']['SkyWars']['deaths']:
+                    draw.text((50, 1700), f"Deaths: {player1API['stats']['SkyWars']['deaths']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1700), f"Deaths: {player2API['stats']['SkyWars']['deaths']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['SkyWars']['deaths'] == player2API['stats']['SkyWars']['deaths']:
+                    draw.text((50, 1700), f"Deaths: {player1API['stats']['SkyWars']['deaths']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1700), f"Deaths: {player2API['stats']['SkyWars']['deaths']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1700), f"Deaths: {player1API['stats']['SkyWars']['deaths']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1700), f"Deaths: {player2API['stats']['SkyWars']['deaths']}",
+                              self.better,
+                              font=font)
 
-                draw.text((50, 1300), f"WLR: {player1API['stats']['SkyWars']['win_loss_ratio']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1300), f"WLR: {player2API['stats']['SkyWars']['win_loss_ratio']}",
-                          (255, 255, 255),
-                          font=font)
+                if player1API['stats']['SkyWars']['kill_death_ratio'] > player2API['stats']['SkyWars']['kill_death_ratio']:
+                    draw.text((50, 1900), f"KDR: {player1API['stats']['SkyWars']['kill_death_ratio']}",
+                              self.better,
+                              font=font)
+                    draw.text((1300, 1900), f"KDR: {player2API['stats']['SkyWars']['kill_death_ratio']}",
+                              self.worse,
+                              font=font)
+                elif player1API['stats']['SkyWars']['kill_death_ratio'] == player2API['stats']['SkyWars']['kill_death_ratio']:
+                    draw.text((50, 1900), f"KDR: {player1API['stats']['SkyWars']['kill_death_ratio']}",
+                              self.same,
+                              font=font)
+                    draw.text((1300, 1900), f"KDR: {player2API['stats']['SkyWars']['kill_death_ratio']}",
+                              self.same,
+                              font=font)
+                else:
+                    draw.text((50, 1900), f"KDR: {player1API['stats']['SkyWars']['kill_death_ratio']}",
+                              self.worse,
+                              font=font)
+                    draw.text((1300, 1900), f"KDR: {player2API['stats']['SkyWars']['kill_death_ratio']}",
+                              self.better,
+                              font=font)
 
-                draw.text((50, 1500), f"Kills: {player1API['stats']['SkyWars']['kills']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1500), f"Kills: {player2API['stats']['SkyWars']['kills']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1700), f"Deaths: {player1API['stats']['SkyWars']['deaths']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1700), f"Deaths: {player2API['stats']['SkyWars']['deaths']}",
-                          (255, 255, 255),
-                          font=font)
-
-                draw.text((50, 1900), f"KDR: {player1API['stats']['SkyWars']['kill_death_ratio']}",
-                          (255, 255, 255),
-                          font=font)
-                draw.text((1300, 1900), f"KDR: {player2API['stats']['SkyWars']['kill_death_ratio']}",
-                          (255, 255, 255),
-                          font=font)
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')
                     image_binary.seek(0)
                     await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
+
             else:
                 img = Image.open("infoimgimg.png")
                 draw = ImageDraw.Draw(img)

@@ -11,7 +11,7 @@ class Help(commands.Cog):
         self.bot = bot
 
     @commands.command(pass_context=True)
-    async def help(self, ctx, help: str = None):
+    async def help(self, ctx):
         color = ctx.author.color
         embed = discord.Embed(title='PinkBot help', colour=color, timestamp=datetime.datetime.utcnow())
         embed.add_field(name="Overall:", value=f"overall (for hypixel overall stats)", inline=False)
@@ -32,7 +32,16 @@ class Help(commands.Cog):
     async def invite(self, ctx):
         color = ctx.author.color
         embed = discord.Embed(title='PinkBot invite', colour=color, timestamp=datetime.datetime.utcnow())
-        embed.add_field(name="Link:", value=f"https://discord.com/api/oauth2/authorize?client_id=756153198456340511&permissions=8&scope=bot", inline=False)
+        embed.add_field(name="Link:", value=f"https://discord.com/api/oauth2/authorize?client_id=756153198456340511"
+                                            f"&permissions=8&scope=bot", inline=False)
+        embed.add_field(name="Developer:", value="Pinkulu", inline=False)
+        await ctx.send(embed=embed)
+
+    @commands.command(pass_context=True)
+    async def source(self, ctx):
+        color = ctx.author.color
+        embed = discord.Embed(title='PinkBot source code', colour=color, timestamp=datetime.datetime.utcnow())
+        embed.add_field(name="Link:", value=f"https://github.com/pinkulu/PinkPixelBot", inline=False)
         embed.add_field(name="Developer:", value="Pinkulu", inline=False)
         await ctx.send(embed=embed)
 

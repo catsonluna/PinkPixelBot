@@ -44,16 +44,19 @@ async def get_prefix(bot, message):
     prefixes = ["pd>"]
     return commands.when_mentioned_or(*prefixes)(bot, message)
 
+intents = discord.Intents.default()
+intents.members = True  # Subscribe to the privileged members intent.
 
-bot = commands.Bot(command_prefix=get_prefix, case_insensitive=True)
+bot = commands.Bot(command_prefix=get_prefix, case_insensitive=True, intents=intents)
 bot.remove_command("help")
 guild_ids = [803046779657781328]
-
 
 for extension in initial_extensions:
     bot.load_extension(extension)
 
 bot.load_extension("jishaku")
+
+
 
 
 @bot.event
@@ -64,8 +67,9 @@ async def on_ready():
     print(len(bot.guilds))
     print("People im watching over:")
     print(len(bot.users))
-    #channel = bot.get_channel(806995896298110977)
-    #await channel.send(f"bot is back online")
+    # channel = bot.get_channel(806995896298110977)
+    # await channel.send(f"bot is back online")
     await bot.change_presence(status=discord.Status.online, activity=discord.Game('pp>help to get started'))
+
 
 bot.run(BotToken, bot=True, reconnect=True)

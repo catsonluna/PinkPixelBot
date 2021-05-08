@@ -1902,14 +1902,178 @@ class Compare(commands.Cog):
                     image_binary.seek(0)
                     await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
 
-    @commands.command(name="compare_users", description="Get hypixel stats")
+    @commands.command(name="compare_users", aliases=["compare_user"], description="Get discord user stats")
     async def compare_users(self, ctx, user1: discord.User = None, user2: discord.User = None):
+        if user2 is None and user1 is not None:
+            user2 = user1
+            user1 = ctx.author
+            print(user1)
+            print(user2)
         if user1 is None:
-            await ctx.send("User1 is not provided")
+            await ctx.send("You need to provide atleast one user(either the id or tag them)")
             return
-        if user2 is None:
-            await ctx.send("User2 is not provided")
+        img = Image.open("infoimgimg.png")
+        draw = ImageDraw.Draw(img)
+        font = ImageFont.truetype("Minecraftia.ttf",
+                                  80)
+        fontbig = ImageFont.truetype("Minecraftia.ttf",
+                                     190)
+        draw.text((0, 0), "Discord User Stats:", (255, 255, 255), font=fontbig)
+        draw.text((0, 400), f"Name:\n{user1}", self.neutral,
+                  font=font)
+        draw.text((1300, 400), f"Name:\n{user2}", self.neutral,
+                  font=font)
+        Cdays1 = (datetime.datetime.utcnow() - user1.created_at).days
+        Cdays2 = (datetime.datetime.utcnow() - user2.created_at).days
+        if user1.created_at < user2.created_at:
+            draw.text((0, 700),
+                      f"Account created:\n{user1.created_at.strftime('%d %b %Y %H:%M')}\n(Days: {Cdays1})",
+                      self.better,
+                      font=font)
+            draw.text((1300, 700),
+                      f"Account created:\n{user2.created_at.strftime('%d %b %Y %H:%M')}\n(Days: {Cdays2})",
+                      self.worse,
+                      font=font)
+        elif user1.created_at == user2.created_at:
+            draw.text((0, 700),
+                      f"Account created:\n{user1.created_at.strftime('%d %b %Y %H:%M')}\n(Days: {Cdays1})",
+                      self.neutral,
+                      font=font)
+            draw.text((1300, 700),
+                      f"Account created:\n{user2.created_at.strftime('%d %b %Y %H:%M')}\n(Days: {Cdays2})",
+                      self.neutral,
+                      font=font)
+        else:
+            draw.text((0, 700),
+                      f"Account created:\n{user1.created_at.strftime('%d %b %Y %H:%M')}\n(Days: {Cdays1})",
+                      self.worse,
+                      font=font)
+            draw.text((1300, 700),
+                      f"Account created:\n{user2.created_at.strftime('%d %b %Y %H:%M')}\n(Days: {Cdays2})",
+                      self.better,
+                      font=font)
+        guild = self.bot.get_guild(ctx.guild.id)
+        if guild.get_member(user1.id) and guild.get_member(user2.id):
+            member1: discord.Member = await guild.fetch_member(user1.id)
+            member2: discord.Member = await guild.fetch_member(user2.id)
+            days1 = (datetime.datetime.utcnow() - member1.joined_at).days
+            days2 = (datetime.datetime.utcnow() - member2.joined_at).days
+            if days1 > days2:
+                draw.text((0, 1100),
+                          f"Joined at:\n{member1.joined_at.strftime('%d %b %Y ')}\n(Days: {days1})",
+                          self.better,
+                          font=font)
+                draw.text((1300, 1100),
+                          f"Joined at:\n{member2.joined_at.strftime('%d %b %Y ')}\n(Days: {days2})",
+                          self.worse,
+                          font=font)
+            elif days1 == days2:
+                draw.text((0, 1100),
+                          f"Joined at:\n{member1.joined_at.strftime('%d %b %Y ')}\n(Days: {days1})",
+                          self.neutral,
+                          font=font)
+                draw.text((1300, 1100),
+                          f"Joined at:\n{member2.joined_at.strftime('%d %b %Y ')}\n(Days: {days2})",
+                          self.neutral,
+                          font=font)
+            else:
+                draw.text((0, 1100),
+                          f"Joined at:\n{member1.joined_at.strftime('%d %b %Y ')}\n(Days: {days1})",
+                          self.worse,
+                          font=font)
+                draw.text((1300, 1100),
+                          f"Joined at:\n{member2.joined_at.strftime('%d %b %Y ')}\n(Days: {days2})",
+                          self.better,
+                          font=font)
+            if member1.top_role > member2.top_role:
+                draw.text((0, 1500),
+                          f"Top Role:\n{member1.top_role}",
+                          self.better,
+                          font=font)
+                draw.text((1300, 1500),
+                          f"Top Role:\n{member2.top_role}",
+                          self.worse,
+                          font=font)
+            elif member1.top_role == member2.top_role:
+                draw.text((0, 1500),
+                          f"Top Role:\n{member1.top_role}",
+                          self.neutral,
+                          font=font)
+                draw.text((1300, 1500),
+                          f"Top Role:\n{member2.top_role}",
+                          self.neutral,
+                          font=font)
+            else:
+                draw.text((0, 1500),
+                          f"Top Role:\n{member1.top_role}",
+                          self.worse,
+                          font=font)
+                draw.text((1300, 1500),
+                          f"Top Role:\n{member2.top_role}",
+                          self.better,
+                          font=font)
+            with io.BytesIO() as image_binary:
+                img.save(image_binary, 'PNG')
+                image_binary.seek(0)
+                await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
             return
+        if guild.get_member(user1.id) is None and guild.get_member(user2.id) is None:
+            draw.text((0, 1100),
+                      f"Not In Server:\nThis Person isnt \nin this server",
+                      self.worse,
+                      font=font)
+            draw.text((1300, 1100),
+                      f"Not In Server:\nThis Person isnt \nin this server",
+                      self.worse,
+                      font=font)
+            with io.BytesIO() as image_binary:
+                img.save(image_binary, 'PNG')
+                image_binary.seek(0)
+                await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
+            return
+        if guild.get_member(user1.id) is None:
+            member2: discord.Member = await guild.fetch_member(user2.id)
+            days2 = (datetime.datetime.utcnow() - member2.joined_at).days
+            draw.text((0, 1100),
+                      f"Not In Server:\nThis Person isnt \nin this server",
+                      self.worse,
+                          font=font)
+            draw.text((1300, 1100),
+                          f"Joined at:\n{member2.joined_at.strftime('%d %b %Y ')}\n(Days: {days2})",
+                          self.better,
+                          font=font)
+
+            draw.text((1300, 1500),
+                          f"Top Role:\n{member2.top_role}",
+                          self.better,
+                          font=font)
+            with io.BytesIO() as image_binary:
+                img.save(image_binary, 'PNG')
+                image_binary.seek(0)
+                await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
+            return
+        if guild.get_member(user2.id) is None:
+            member1: discord.Member = await guild.fetch_member(user1.id)
+            days1 = (datetime.datetime.utcnow() - member1.joined_at).days
+            draw.text((1300, 1100),
+                      f"Not In Server:\nThis Person isnt \nin this server",
+                      self.worse,
+                      font=font)
+            draw.text((0, 1100),
+                      f"Joined at:\n{member1.joined_at.strftime('%d %b %Y ')}\n(Days: {days1})",
+                      self.better,
+                      font=font)
+
+            draw.text((0, 1500),
+                      f"Top Role:\n{member1.top_role}",
+                      self.better,
+                      font=font)
+            with io.BytesIO() as image_binary:
+                img.save(image_binary, 'PNG')
+                image_binary.seek(0)
+                await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
+            return
+
 
 def setup(bot):
     bot.add_cog(Compare(bot))

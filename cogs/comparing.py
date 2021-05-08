@@ -21,7 +21,7 @@ class Compare(commands.Cog):
         self.neutral = 255, 255, 255
 
     # change to hypixel API when i get my 3rd api key
-    @commands.command(name="compare", description="Get hypixel stats")
+    @commands.command(name="compare", description="Compare Hypixel player commands")
     async def compare(self, ctx, gamemode: str = None, player1: str = None, player2: str = None):
         if gamemode is None:
             await ctx.send("the format is: `pp>compare game player1 player2`")
@@ -1902,7 +1902,7 @@ class Compare(commands.Cog):
                     image_binary.seek(0)
                     await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
 
-    @commands.command(name="compare_users", aliases=["compare_user"], description="Get discord user stats")
+    @commands.command(name="compare_users", aliases=["compare_user"], description="Compare discord user stats")
     async def compare_users(self, ctx, user1: discord.User = None, user2: discord.User = None):
         if user2 is None and user1 is not None:
             user2 = user1
@@ -2037,16 +2037,16 @@ class Compare(commands.Cog):
             draw.text((0, 1100),
                       f"Not In Server:\nThis Person isnt \nin this server",
                       self.worse,
-                          font=font)
+                      font=font)
             draw.text((1300, 1100),
-                          f"Joined at:\n{member2.joined_at.strftime('%d %b %Y ')}\n(Days: {days2})",
-                          self.better,
-                          font=font)
+                      f"Joined at:\n{member2.joined_at.strftime('%d %b %Y ')}\n(Days: {days2})",
+                      self.better,
+                      font=font)
 
             draw.text((1300, 1500),
-                          f"Top Role:\n{member2.top_role}",
-                          self.better,
-                          font=font)
+                      f"Top Role:\n{member2.top_role}",
+                      self.better,
+                      font=font)
             with io.BytesIO() as image_binary:
                 img.save(image_binary, 'PNG')
                 image_binary.seek(0)
@@ -2073,6 +2073,139 @@ class Compare(commands.Cog):
                 image_binary.seek(0)
                 await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
             return
+
+    @commands.command(name="compare_guilds", aliases=["compare_guild"])
+    async def compare_guilds(self, ctx, guild1: str = None, guild2: str = None):
+        if guild1 is None:
+            await ctx.send("the format is: `pp>compare_guilds guild1 guild2`")
+            return
+        if guild2 is None:
+            await ctx.send("the format is: `pp>compare_guilds guild1 guild2`")
+            return
+        async with ctx.typing():
+            async with aiohttp.ClientSession() as session:
+                async with session.get(f'https://api.slothpixel.me/api/guilds/name/{guild1}') as resp:
+                    guild1API = await resp.json()
+                async with session.get(f'https://api.slothpixel.me/api/guilds/name/{guild2}') as resp:
+                    guild2API = await resp.json()
+            if "guild" in guild1API and guild1API["guild"] is None:
+                await ctx.send("Wrong Guild1 Name")
+                return
+            if "guild" in guild2API and guild2API["guild"] is None:
+                await ctx.send("Wrong Guild2 Name")
+                return
+        img = Image.open("infoimgimg.png")
+        draw = ImageDraw.Draw(img)
+        font = ImageFont.truetype("Minecraftia.ttf",
+                                  80)
+        fontbig = ImageFont.truetype("Minecraftia.ttf",
+                                     190)
+        guild1Members = 0
+        guild2Members = 0
+
+        for member in guild1API['members']:
+            guild1Members = guild1Members + 1
+        for member in guild2API['members']:
+            guild2Members = guild2Members + 1
+
+        guild1Creation = datetime.datetime.fromtimestamp(guild1API['created'] / 1000.0)
+        guild2Creation = datetime.datetime.fromtimestamp(guild2API['created'] / 1000.0)
+
+        days1 = (datetime.datetime.utcnow() - guild1Creation).days
+        days2 = (datetime.datetime.utcnow() - guild2Creation).days
+
+        draw.text((0, 0), "Guild Stats:", (255, 255, 255), font=fontbig)
+        draw.text((0, 400), f"Name:\n{guild1API['name']}", self.neutral,
+                  font=font)
+        draw.text((1300, 400), f"Name:\n{guild2API['name']}", self.neutral,
+                  font=font)
+
+        if guild1API['level'] > guild2API['level']:
+            draw.text((0, 700), f"Level: {guild1API['level']}", self.better,
+                      font=font)
+            draw.text((1300, 700), f"Level: {guild2API['level']}", self.worse,
+                      font=font)
+        elif guild1API['level'] == guild2API['level']:
+            draw.text((0, 700), f"Level: {guild1API['level']}", self.same,
+                      font=font)
+            draw.text((1300, 700), f"Level: {guild2API['level']}", self.same,
+                      font=font)
+        else:
+            draw.text((0, 700), f"Level: {guild1API['level']}", self.worse,
+                      font=font)
+            draw.text((1300, 700), f"Level: {guild2API['level']}", self.better,
+                      font=font)
+
+        if guild1Members > guild2Members:
+            draw.text((0, 900), f"Members: {guild1Members}", self.better,
+                      font=font)
+            draw.text((1300, 900), f"Members: {guild2Members}", self.worse,
+                      font=font)
+        elif guild1Members == guild2Members:
+            draw.text((0, 900), f"Members: {guild1Members}", self.same,
+                      font=font)
+            draw.text((1300, 900), f"Members: {guild2Members}", self.same,
+                      font=font)
+        else:
+            draw.text((0, 900), f"Members: {guild1Members}", self.worse,
+                      font=font)
+            draw.text((1300, 900), f"Members: {guild2Members}", self.better,
+                      font=font)
+
+        if guild1Creation < guild2Creation:
+            draw.text((0, 1100), f"Created at:\n{guild1Creation.strftime('%d %b %Y')}\n{days1} Days Ago", self.better,
+                      font=font)
+            draw.text((1300, 1100), f"Created at:\n{guild2Creation.strftime('%d %b %Y')}\n{days2} Days Ago",
+                      self.worse,
+                      font=font)
+        elif guild1Creation == guild2Creation:
+            draw.text((0, 1100), f"Created at:\n{guild1Creation.strftime('%d %b %Y')}\n{days1} Days Ago", self.same,
+                      font=font)
+            draw.text((1300, 1100), f"Created at:\n{guild2Creation.strftime('%d %b %Y')}\n{days2} Days Ago",
+                      self.same,
+                      font=font)
+        else:
+            draw.text((0, 1100), f"Created at:\n{guild1Creation.strftime('%d %b %Y')}\n{days1} Days Ago", self.worse,
+                      font=font)
+            draw.text((1300, 1100), f"Created at:\n{guild2Creation.strftime('%d %b %Y')}\n{days2} Days Ago",
+                      self.better,
+                      font=font)
+        if guild1API['public'] > guild2API['public']:
+            draw.text((0, 1500), f"Public: {guild1API['public']}", self.better,
+                      font=font)
+            draw.text((1300, 1500), f"Public: {guild2API['public']}", self.worse,
+                      font=font)
+        elif guild1API['public'] == guild2API['public']:
+            draw.text((0, 1500), f"Public: {guild1API['public']}", self.same,
+                      font=font)
+            draw.text((1300, 1500), f"Public: {guild2API['public']}", self.same,
+                      font=font)
+        else:
+            draw.text((0, 1500), f"Public: {guild1API['public']}", self.worse,
+                      font=font)
+            draw.text((1300, 1500), f"Public: {guild2API['public']}", self.better,
+                      font=font)
+
+        if guild1API['joinable'] > guild2API['joinable']:
+            draw.text((0, 1700), f"Joinable: {guild1API['joinable']}", self.better,
+                      font=font)
+            draw.text((1300, 1700), f"Joinable: {guild2API['joinable']}", self.worse,
+                      font=font)
+        elif guild1API['joinable'] == guild2API['joinable']:
+            draw.text((0, 1700), f"Joinable: {guild1API['joinable']}", self.same,
+                      font=font)
+            draw.text((1300, 1700), f"Joinable: {guild2API['joinable']}", self.same,
+                      font=font)
+        else:
+            draw.text((0, 1700), f"Joinable: {guild1API['joinable']}", self.worse,
+                      font=font)
+            draw.text((1300, 1700), f"Joinable: {guild2API['joinable']}", self.better,
+                      font=font)
+
+        with io.BytesIO() as image_binary:
+            img.save(image_binary, 'PNG')
+            image_binary.seek(0)
+            await ctx.send(file=discord.File(fp=image_binary, filename='image.png'))
 
 
 def setup(bot):

@@ -22,9 +22,19 @@ class Help(commands.Cog):
                                                    "bedwars_fours (4v4v4v4 bedwars stats)",
                             inline=False)
         embed.add_field(name="Duels:", value=f"duels (for duels stats)", inline=False)
-        embed.add_field(name="Example:", value=f"`pp>compare overall pinkulu technoblade`", inline=False)
+        embed.add_field(name="Skywars:", value=f"skywars (for skywars stats)", inline=False)
+        embed.add_field(name="Pit:", value=f"pit (for pit stats)", inline=False)
         embed.add_field(name="Comparing stats with somone else:", value="pp>compare gamemode player1 player2",
                             inline=False)
+        embed.add_field(name="Example:", value=f"`pp>compare overall pinkulu technoblade`", inline=False)
+        embed.add_field(name="Guilds:", value=f"You can compare 2 hypixel guilds", inline=False)
+        embed.add_field(name="Example:", value=f"`pp>compare_guilds rawr hypemc`", inline=False)
+        embed.add_field(name="Discord:", value=f"`You can compare 2 discord users", inline=False)
+        embed.add_field(name="Example:", value=f"`pp>compare_users @pinkulu#6260 324553306682818561`", inline=False)
+        embed.add_field(name="Note:", value=f"You can either use their ID or @ing them\nAlso you dont need to provide "
+                                            f"2 people, if you only provide 1, it will compare that person to you",
+                        inline=False)
+
         embed.add_field(name="Developer:", value="Pinkulu", inline=False)
         await ctx.send(embed=embed)
 

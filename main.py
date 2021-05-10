@@ -36,7 +36,8 @@ initial_extensions = [
     'cogs.comparing',
     'cogs.admin',
     'cogs.errorHandler',
-    'cogs.heightLimitMod'
+    'cogs.heightLimitMod',
+    'cogs.listeners'
 ]
 
 

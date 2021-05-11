@@ -62,7 +62,7 @@ class Listeners(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, msg):
-        if msg.content == f"<@!{self.bot.user.id}>":
+        if msg.content == f"<@!{self.bot.user.id}>" or msg.content == f"<@{self.bot.user.id}>":
             if self.bot.user.id == 756153198456340511:
                 await msg.channel.send(f"My prefix is `pp>` :), you can start by doing `pp>help`")
 

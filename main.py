@@ -42,8 +42,12 @@ initial_extensions = [
 
 
 async def get_prefix(bot, message):
-    prefixes = ["pd>"]
+    if bot.user.id == 756153198456340511:
+        prefixes = ["pp>"]
+    else:
+        prefixes = ["pd>"]
     return commands.when_mentioned_or(*prefixes)(bot, message)
+
 
 intents = discord.Intents.default()
 intents.members = True  # Subscribe to the privileged members intent.
@@ -56,8 +60,6 @@ for extension in initial_extensions:
     bot.load_extension(extension)
 
 bot.load_extension("jishaku")
-
-
 
 
 @bot.event

@@ -2082,6 +2082,9 @@ class Compare(commands.Cog):
         if guild2 is None:
             await ctx.send("the format is: `pp>compare_guilds guild1 guild2`")
             return
+        guild1 = guild1.replace("_", "%20")
+        guild2 = guild2.replace("_", "%20")
+        print(guild2)
         async with ctx.typing():
             async with aiohttp.ClientSession() as session:
                 async with session.get(f'https://api.slothpixel.me/api/guilds/name/{guild1}') as resp:

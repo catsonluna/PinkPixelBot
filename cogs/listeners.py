@@ -1,6 +1,7 @@
 import asyncio
 import datetime
 import io
+import time
 
 import discord
 import requests
@@ -30,7 +31,8 @@ class Listeners(commands.Cog):
                                              200)
                 img.paste(bigger2, (900, 600))
                 draw.text((600, 0), "A New Member Has Joined", (0, 255, 0), font=font)
-                draw.text((900, 300), f"{member}", (0, 255, 0), font=font)
+                draw.text((900, 200), f"{member}", (0, 255, 0), font=font)
+                draw.text((300, 400), f"there currently are {len(member.guild.members)} people here", (0, 255, 0), font=font)
 
                 with io.BytesIO() as image_binary:
                     img.save(image_binary, 'PNG')

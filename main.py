@@ -1,3 +1,5 @@
+import time
+
 import discord
 import discord.utils
 import json
@@ -16,7 +18,7 @@ private = getJSON('./private.json')
 BotToken = private.get("token")
 
 MongoDBPass = private.get("MongoDBPPass")
-MongoDBPass2 = private.get("MongoDBPPass2")
+MongoDBPass2 = private.get("MongoDBPass2")
 
 HypixelAPIKey1 = private.get("HypixelAPIKey1")
 HypixelAPIKey2 = private.get("HypixelAPIKey2")
@@ -29,7 +31,9 @@ db2 = cluster["HightLimitMod"]
 db = cluster["PinkPixel"]
 
 DHT = MongoClient(MongoDBPass2)
-DHTDB = DHT['DHTMOD']
+PinkStats = DHT['PinkStats']
+
+start_time = time.time()
 
 initial_extensions = [
     'cogs.helpCommand',
@@ -37,7 +41,8 @@ initial_extensions = [
     'cogs.admin',
     'cogs.errorHandler',
     'cogs.heightLimitMod',
-    'cogs.listeners'
+    'cogs.listeners',
+    'cogs.pinkStats'
 ]
 
 
@@ -60,7 +65,6 @@ for extension in initial_extensions:
     bot.load_extension(extension)
 
 bot.load_extension("jishaku")
-
 
 @bot.event
 async def on_ready():
